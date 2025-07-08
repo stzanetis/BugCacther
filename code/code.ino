@@ -1,80 +1,120 @@
 #include <BluetoothSerial.h>
 #include <U8g2lib.h>
-#include <DHT.h>
 #include <Ticker.h>
 
-#define DHTPIN 4
-#define DSDA 22
-#define DSCL 20
+#include "config.h"
+#include "src/Measurements/Measurements.h"
 
 U8G2_SSD1306_128X64_NONAME_F_SW_I2C u8g2(U8G2_R0, DSCL, DSDA, U8X8_PIN_NONE);
-DHT dht(DHTPIN, DHT11);
-BluetoothSerial SerialBT; // Bluetooth Serial object
-Ticker dhtTimer;          // Timer for DHT measurement
+BluetoothSerial SerialBT;
+Ticker measureTimer;
 
-volatile bool dhtFlag = false;
-float temperature;
-float humidity;
+volatile bool measureFlag = false;
+volatile bool displayFlag = true;
+volatile bool bluetoothFlag = true;
+volatile bool wifiFlag = true;
 
-// DHT Timer ISR
-void TickerDHT() {
-  dhtFlag = true;
+volatile unsigned long lastButtonPress = 0;
+const unsigned long debounceDelay = 200;
+
+// Track bluetooth state
+bool bluetoothInit = false;
+
+float temperature, humidity;
+
+void measureTicker() {
+  measureFlag = true;
+}
+
+void btnISR() {
+  unsigned long currentTime = millis();
+  
+  // Only process button press if enough time has passed since last press
+  if (currentTime - lastButtonPress > debounceDelay) {
+    bluetoothFlag = !bluetoothFlag; // Toggle Bluetooth state
+    digitalWrite(LEDPIN, bluetoothFlag ? LOW : HIGH); // Turn LED on/off based on Bluetooth state
+    Serial.println(bluetoothFlag ? "Bluetooth Enabled" : "Bluetooth Disabled");
+    lastButtonPress = currentTime;
+  }
 }
 
 void setup() {
-  Serial.begin(115200);
-  dht.begin();
-  u8g2.begin();
-  u8g2.setFont(u8g2_font_ncenB08_tr);
-  SerialBT.begin("BugCatcher-BT");
+  Serial.begin(115200);                   // Baud rate for serial communication
+  u8g2.begin();                           // Enable display
+  u8g2.setFont(u8g2_font_luRS08_tf);      // Set display text font
+  initDHT();                              // Initialize DHT sensor
 
-  dhtTimer.attach(5, TickerDHT);
+  pinMode (LEDPIN, OUTPUT);               // Set LED pin as output
+  digitalWrite(LEDPIN, HIGH);             // Turn on LED
+
+  pinMode(BTNPIN, INPUT_PULLUP);
+  attachInterrupt(BTNPIN, btnISR, FALLING);
+
+  measureTimer.attach(10, measureTicker); // Get a measurement every 10 seconds
 
   Serial.println("Setup Complete");
 }
 
 void loop() {
-  if (dhtFlag) {
-    dhtFlag = false;
-    if (getDHTMeasurement()) {
-      Serial.println("Periodic DHT Measurement");
-    }
+  // Store the flag state for display
+  bool currentMeasureFlag = measureFlag;
+  
+  // Handle periodic measurements
+  if(measureFlag) {
+    measureFlag = false;
+    //while(!getDHTMeasurement(&temperature, &humidity)) {
+    //  Serial.println("DHT Measurement failed");
+    //}
+    Serial.println("Periodic DHT Measurement");
   }
 
-  if (SerialBT.available()) {
+  // Initialize/Deinitialize Bluetooth only when flag changes
+  if(bluetoothFlag && !bluetoothInit) {
+    SerialBT.begin(BTID);
+    bluetoothInit = true;
+    Serial.println("Bluetooth started");
+  } else if(!bluetoothFlag && bluetoothInit) {
+    SerialBT.end();
+    bluetoothInit = false;
+    Serial.println("Bluetooth stopped");
+  }
+
+  // Handle bluetooth communication
+  if(bluetoothInit && SerialBT.available()) {
     String option = SerialBT.readStringUntil('\n');
     option.trim();
 
-    if (option == "measure") {
-      bool success = getDHTMeasurement();
-      if (success) {
-        u8g2.clearBuffer();
-        u8g2.drawStr(0, 10, "DHT Success");
-        u8g2.sendBuffer();
+    if(option == "measure") {
+      currentMeasureFlag = true;
+      if(getDHTMeasurement(&temperature, &humidity)) {
+        Serial.println("BT: DHT Measurement success");
       } else {
-        u8g2.clearBuffer();
-        u8g2.drawStr(0, 10, "DHT Failed");
-        u8g2.sendBuffer();
+        Serial.println("BT: DHT Measurement failed");
       }
     } else {
-      SerialBT.println("Invalid Argument");
+      SerialBT.println("Invalid command");
     }
   }
-}
 
-bool getDHTMeasurement() {
-  humidity = dht.readHumidity();
-  temperature = dht.readTemperature();
+  // Handle display updates
+  if(displayFlag) {
+    char BTStringBuff[30];
+    char WiFiStringBuff[30];
 
-  if (isnan(humidity) || isnan(temperature)) {
-    Serial.println("Failed to read from DHT sensor!");
-    return false;
+    sprintf(BTStringBuff, "Bluetooth: %s", bluetoothFlag ? "Enabled" : "Disabled");
+    sprintf(WiFiStringBuff, "WiFi: %s", wifiFlag ? "Connected" : "Disconnected");
+
+    for(int i = 0; i < 5; i++) {
+      u8g2.clearBuffer();
+      u8g2.drawStr(0, 14, BTStringBuff);
+      u8g2.drawStr(0, 28, WiFiStringBuff);
+      if(currentMeasureFlag && i % 2 == 0) {
+        u8g2.drawCircle(4, 60, 3);
+      }
+      u8g2.sendBuffer();
+      delay(50);
+    }
   }
-
-  Serial.print("Humidity: ");
-  Serial.print(humidity);
-  Serial.print("%  Temperature: ");
-  Serial.print(temperature);
-  Serial.println("°C");
-  return true;
+  
+  delay(50);
 }
