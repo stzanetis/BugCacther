@@ -1,11 +1,10 @@
-// Pins
-#define DHTPIN  4
-#define LEDPIN  14
-#define BTNPIN  32
+#define DHTPIN  4   // DHT Pin
+#define LEDPIN  14  // LED Pin
+#define BTN_ME  32  // Measure Button
+#define SW_DIS  15  // Display Switch
+#define SW_BLT  33  // Bluetooth Switch
 
-// I2C Display Pins 
-#define DSDA    22
-#define DSCL    20
+#define SDAPIN  22  // I2C Display SDA
+#define SCLPIN  20  // I2C Display SCL
 
-// Bluetooth Device Name
-#define BTID  "BugCatcher-BT"
+#define ID_BLT  "BugCatcher-BT"

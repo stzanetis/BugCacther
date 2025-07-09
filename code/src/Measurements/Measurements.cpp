@@ -11,9 +11,10 @@ void initDHT() {
 }
 
 bool getDHTMeasurement(float* temp, float* hum) {
-  *temp = dht.readTemperature();
-  *hum = dht.readHumidity();
+  *temp = dht.readTemperature();  // Get temperature in Celsius
+  *hum = dht.readHumidity();      // Get humidity in percentage
 
+  // Check if the readings are valid
   if (isnan(*temp) || isnan(*hum)) {
     return false;
   }

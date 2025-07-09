@@ -4,4 +4,4 @@
 void initDHT();
 bool getDHTMeasurement(float* temp, float* hum);
 
-#endif
+#endif // MEASUREMENTS_H
