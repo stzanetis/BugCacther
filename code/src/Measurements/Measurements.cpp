@@ -1,5 +1,3 @@
-#include <DHT.h>
-
 #include "Measurements.h"
 #include "../../config.h"
 

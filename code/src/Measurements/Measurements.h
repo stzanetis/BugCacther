@@ -1,3 +1,7 @@
+#include <DHT.h>
+
+#define DHTPIN  4   // DHT Pin
+
 #ifndef MEASUREMENTS_H
 #define MEASUREMENTS_H
 

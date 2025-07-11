@@ -1,34 +1,39 @@
-#include <BluetoothSerial.h>
 #include <U8g2lib.h>
 #include <Ticker.h>
 
-#include "config.h"
+//#include "src/WifiManager/WiFiManager.h"
 #include "src/Measurements/Measurements.h"
+#include "src/BTManager/BTManager.h"
+#include "config.h"
 
 U8G2_SSD1306_128X64_NONAME_F_SW_I2C u8g2(U8G2_R0, SCLPIN, SDAPIN, U8X8_PIN_NONE);
-BluetoothSerial SerialBT;
 Ticker measureTimer;
 
-volatile bool measureFlag   = false;
-volatile bool displayFlag   = false;
-volatile bool bluetoothFlag = false;
-volatile bool wifiFlag      = false;
+TaskHandle_t displayTaskHandle = NULL;
+volatile bool stopDisplayTask = false;
 
+// Interrupt flags
+volatile bool flagButton    = false;
+volatile bool flagDisplay   = false;
+volatile bool flagBluetooth = false;
+volatile bool flagWiFi      = false;
+bool flagCurrentMeasure     = false;
+
+// Debouncing variables
 volatile unsigned long lastBTN_ME = 0;
 volatile unsigned long lastSW_DIS = 0;
 volatile unsigned long lastSW_BLT = 0;
 
-// Track state of initializations
-bool bluetoothInit      = false;
-bool wifiInit           = false;
-bool wifiConnected      = false;
-bool currentMeasureFlag = false;
+// Status strings
+char* statusBluetooth = "Disabled";
+char* statusWiFi      = "Disabled";
 
+// Gloabal variables
 float temperature;
 float humidity;
 
 void measureTicker() {
-  measureFlag = true;
+  flagButton = true;  // Spoof button press for periodic measurement
 }
 
 void BTN_ME_ISR() {
@@ -36,8 +41,8 @@ void BTN_ME_ISR() {
   
   // Software debounce for button press
   if (currentTime - lastBTN_ME > 200) {
-    measureFlag = !measureFlag;
-    Serial.println("Measuring button pressed");
+    flagButton = !flagButton;
+    //Serial.println("Measuring button pressed");
     lastBTN_ME = currentTime;
   }
 }
@@ -47,8 +52,8 @@ void SW_DIS_ISR() {
   
   // Software debounce for button press
   if (currentTime - lastSW_DIS > 200) {
-    displayFlag = !displayFlag;
-    Serial.println("Display switch pressed");
+    flagDisplay = !flagDisplay;
+    //Serial.println("Display switch pressed");
     lastSW_DIS = currentTime;
   }
 }
@@ -58,19 +63,19 @@ void SW_BLT_ISR() {
   
   // Software debounce for button press
   if (currentTime - lastSW_BLT > 200) {
-    bluetoothFlag = !bluetoothFlag;
-    Serial.println("Bluetooth switch pressed");
+    flagBluetooth = !flagBluetooth;
+    //Serial.println("Bluetooth switch pressed");
     lastSW_BLT = currentTime;
   }
 }
 
 void setup() {
-  Serial.begin(115200);                   // Baud rate for serial communication
-  u8g2.begin();                         // Enable display
-  initDHT();                              // Initialize DHT sensor
+  Serial.begin(115200); // Baud rate for serial communication
+  u8g2.begin();         // Enable display
+  initDHT();            // Initialize DHT sensor
 
-  pinMode (LEDPIN, OUTPUT);               // Set LED pin as output
-  digitalWrite(LEDPIN, HIGH);             // Turn on LED
+  pinMode (LEDPIN, OUTPUT);   // Set LED pin as output
+  digitalWrite(LEDPIN, HIGH); // Turn on LED
 
   pinMode(BTN_ME, INPUT_PULLUP);  // Set Measure Button pin as input with pull-up resistor
   attachInterrupt(BTN_ME, BTN_ME_ISR, FALLING); // Set ISR for Measure Button
@@ -87,83 +92,104 @@ void setup() {
 
 void loop() {
   // Store the measurement flag state
-  currentMeasureFlag = measureFlag;
-
-  if(!measureFlag || !bluetoothFlag || !displayFlag || !wifiFlag) {
-    __WFI(); // Enter low power mode if no flags are set
-  }
+  flagCurrentMeasure = flagButton;
 
   // Handle periodic measurements
-  if(measureFlag) {
-    measureFlag = false;
+  if(flagButton) {
+    flagButton = false;
     while(!getDHTMeasurement(&temperature, &humidity)) {
       Serial.println("DHT Measurement failed");
-      delay(200); // Wait before retrying
+      delay(1000); // Wait 1s before retrying
     }
     Serial.println("Periodic DHT Measurement");
   }
 
   // Initialize/Deinitialize bluetooth only when flag changes
-  if(bluetoothFlag && !bluetoothInit) {
-    SerialBT.begin(ID_BLT);
-    bluetoothInit = true;
-    Serial.println("Bluetooth started");
-  } else if(!bluetoothFlag && bluetoothInit) {
-    SerialBT.end();
-    bluetoothInit = false;
-    Serial.println("Bluetooth stopped");
+  if(flagBluetooth && statusBluetooth == "Disabled") {
+    initBLE();
+    statusBluetooth = "Enabled";
+  } else if(!flagBluetooth && (statusBluetooth == "Connected" || statusBluetooth == "Enabled")) {
+    if(stopBLE()) {
+      statusBluetooth = "Disabled";
+    }
   }
 
-  // Handle bluetooth communication
-  if(bluetoothInit && SerialBT.available()) {
-    String option = SerialBT.readStringUntil('\n');
-    option.trim();
-
-    if(option == "measure") {
-      currentMeasureFlag = true;
+  // Handle bluetooth commands
+  String command = getBLECommand();
+  if(!(command == "")) {
+    statusBluetooth = "Connected"; 
+    if(command == "measure") {
+      flagCurrentMeasure = true; 
       if(getDHTMeasurement(&temperature, &humidity)) {
         Serial.println("BT: DHT Measurement success");
+        sendBLEResponse("Temperature: " + String(temperature, 1) + "°C, Humidity: " + String(humidity, 1) + "%");
+      } else if(command.startsWith("wifi_ssid:")) {
+        //setWiFiSSID(command.substring(11));
+      } else if(command.startsWith("wifi_password:")) {
+        //setWiFiPassword(command.substring(15));
       } else {
         Serial.println("BT: DHT Measurement failed");
+        sendBLEResponse("ERROR: Failed to read from DHT sensor!");
       }
-    } else if(option == "wifipass") {
-      // PASS
-    } else if(option == "wificssid") {
-      // PASS
     } else {
-      SerialBT.println("Invalid command");
+      sendBLEResponse("Invalid command: " + command);
     }
+    clearBLECommand(); // Clear command after processing
   }
 
   // Handle display updates
-  if(displayFlag) {
-    displayInfo();
-  } else if(!displayFlag) {
-    u8g2.clearBuffer();
-    u8g2.sendBuffer();
+  static bool flagLastDisplay = flagDisplay;
+  if(flagDisplay != flagLastDisplay) {
+    if(flagDisplay && displayTaskHandle == NULL) {
+      xTaskCreatePinnedToCore(displayInfo, "displayInfo", 4096, NULL, 1, &displayTaskHandle, 0);
+    } else if(!flagDisplay && displayTaskHandle != NULL) {
+      stopDisplayTask = true; // Signal task to stop
+    }
+    flagLastDisplay = flagDisplay;
   }
 }
 
-void displayInfo() {
-  for(int i = 0; i < 5; i++) {
-    u8g2.clearBuffer();
-
-    char BTStringBuff[30];
-    char WiFiStringBuff[30];
-
-    sprintf(BTStringBuff, "Bluetooth: %s", bluetoothFlag ? "Enabled" : "Disabled");
-    sprintf(WiFiStringBuff, "WiFi: %s", wifiFlag ? "Enabled" : "Disabled");
-
-    u8g2.setFont(u8g2_font_luBS08_tf);
-    u8g2.drawStr(0, 14, BTStringBuff);
-    u8g2.setFont(u8g2_font_luRS08_tf);
-    u8g2.drawStr(0, 28, WiFiStringBuff);
-
-    if(currentMeasureFlag && i % 2 == 0) {
-      u8g2.drawCircle(4, 60, 3);
+void displayInfo(void *parameter) {
+  while(true) {
+    // Check if we should stop the task
+    if(stopDisplayTask) {
+      // Clear display before stopping
+      u8g2.clearBuffer();
+      u8g2.sendBuffer();
+      
+      // Clean up and delete task
+      displayTaskHandle = NULL;
+      stopDisplayTask = false;
+      vTaskDelete(NULL); // This is the proper way to exit a task
     }
+    
+    // Only update display if it should be on
+    if(flagDisplay) {
+      u8g2.clearBuffer();
 
-    u8g2.sendBuffer();
-    delay(50);
+      u8g2.setFont(u8g2_font_luBS08_tf);
+      u8g2.drawStr(0, 18, "Blu-T: ");
+      u8g2.setFont(u8g2_font_luRS10_tf);
+      u8g2.drawStr(36, 18, statusBluetooth);
+
+      u8g2.setFont(u8g2_font_luBS08_tf);
+      u8g2.drawStr(1, 36, "Wi-Fi: ");
+      u8g2.setFont(u8g2_font_luRS10_tf);
+      u8g2.drawStr(36, 36, statusWiFi);
+
+      // Show capture indicator
+      if(flagCurrentMeasure) {
+        u8g2.drawCircle(120, 56, 6);
+        u8g2.drawDisc(120, 56, 4);
+      }
+
+      u8g2.sendBuffer();
+      vTaskDelay(1000 / portTICK_PERIOD_MS);
+    } else {
+      // Display is off, clear screen and check less frequently
+      u8g2.clearBuffer();
+      u8g2.sendBuffer();
+      vTaskDelay(100 / portTICK_PERIOD_MS);
+    }
   }
 }
