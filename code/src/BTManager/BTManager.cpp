@@ -14,25 +14,25 @@ void clearBLECommand() {
 
 // BLE Server Callbacks
 class MyServerCallbacks: public BLEServerCallbacks {
-    void onConnect(BLEServer* pServer) {
-      //Serial.println("BLE Client connected");
-    };
+  void onConnect(BLEServer* pServer) {
+    //Serial.println("BLE Client connected");
+  };
 
-    void onDisconnect(BLEServer* pServer) {
-      //Serial.println("BLE Client disconnected");
+  void onDisconnect(BLEServer* pServer) {
+    //Serial.println("BLE Client disconnected");
       
-      // Restart advertising
-      BLEDevice::startAdvertising();
-      //Serial.println("Restarting BLE advertising");
-    }
+    // Restart advertising
+    BLEDevice::startAdvertising();
+    //Serial.println("Restarting BLE advertising");
+  }
 };
 
 // BLE Characteristic Callbacks
 class MyCallbacks: public BLECharacteristicCallbacks {
-    void onWrite(BLECharacteristic *pCharacteristic) {
-      command = pCharacteristic->getValue().c_str();
-      command.trim();
-    }
+  void onWrite(BLECharacteristic *pCharacteristic) {
+    command = pCharacteristic->getValue().c_str();
+    command.trim();
+  }
 };
 
 void initBLE() {

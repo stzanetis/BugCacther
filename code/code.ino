@@ -1,7 +1,7 @@
 #include <U8g2lib.h>
 #include <Ticker.h>
 
-//#include "src/WifiManager/WiFiManager.h"
+#include "src/WifiManager/WiFiManager.h"
 #include "src/Measurements/Measurements.h"
 #include "src/BTManager/BTManager.h"
 #include "config.h"
@@ -14,10 +14,11 @@ volatile bool stopDisplayTask = false;
 
 // Interrupt flags
 volatile bool flagButton    = false;
+volatile bool flagTimer     = false;
 volatile bool flagDisplay   = false;
 volatile bool flagBluetooth = false;
 volatile bool flagWiFi      = false;
-bool flagCurrentMeasure     = false;
+volatile bool flagCurrentMeasure = false;
 
 // Debouncing variables
 volatile unsigned long lastBTN_ME = 0;
@@ -33,7 +34,7 @@ float temperature;
 float humidity;
 
 void measureTicker() {
-  flagButton = true;  // Spoof button press for periodic measurement
+  flagTimer = true;  // Spoof button press for periodic measurement
 }
 
 void BTN_ME_ISR() {
@@ -91,17 +92,25 @@ void setup() {
 }
 
 void loop() {
-  // Store the measurement flag state
-  flagCurrentMeasure = flagButton;
-
   // Handle periodic measurements
-  if(flagButton) {
-    flagButton = false;
+  if(flagTimer) {
+    flagCurrentMeasure = flagTimer;
+    flagTimer = false;
     while(!getDHTMeasurement(&temperature, &humidity)) {
       Serial.println("DHT Measurement failed");
       delay(1000); // Wait 1s before retrying
     }
     Serial.println("Periodic DHT Measurement");
+  }
+
+  if(flagButton) {
+    flagCurrentMeasure = flagButton;
+    flagButton = false;
+    while(!getDHTMeasurement(&temperature, &humidity)) {
+      Serial.println("DHT Measurement failed");
+      delay(1000); // Wait 1s before retrying
+    }
+    Serial.println("Button DHT Measurement");
   }
 
   // Initialize/Deinitialize bluetooth only when flag changes
@@ -116,24 +125,28 @@ void loop() {
 
   // Handle bluetooth commands
   String command = getBLECommand();
+  command.trim();
   if(!(command == "")) {
     statusBluetooth = "Connected"; 
+    
     if(command == "measure") {
       flagCurrentMeasure = true; 
       if(getDHTMeasurement(&temperature, &humidity)) {
         Serial.println("BT: DHT Measurement success");
         sendBLEResponse("Temperature: " + String(temperature, 1) + "°C, Humidity: " + String(humidity, 1) + "%");
-      } else if(command.startsWith("wifi_ssid:")) {
-        //setWiFiSSID(command.substring(11));
-      } else if(command.startsWith("wifi_password:")) {
-        //setWiFiPassword(command.substring(15));
-      } else {
-        Serial.println("BT: DHT Measurement failed");
-        sendBLEResponse("ERROR: Failed to read from DHT sensor!");
+      }
+    }else if(command.startsWith("wifi_ssid:")) {
+      setWiFiSSID(command.substring(10));
+    } else if(command.startsWith("wifi_password:")) {
+      setWiFiPassword(command.substring(14));
+    } else if(command == "wifi_test") {
+      if(connectWiFi()) {
+        statusWiFi = "Connected";
       }
     } else {
       sendBLEResponse("Invalid command: " + command);
     }
+
     clearBLECommand(); // Clear command after processing
   }
 
@@ -151,19 +164,16 @@ void loop() {
 
 void displayInfo(void *parameter) {
   while(true) {
-    // Check if we should stop the task
     if(stopDisplayTask) {
-      // Clear display before stopping
       u8g2.clearBuffer();
       u8g2.sendBuffer();
       
       // Clean up and delete task
       displayTaskHandle = NULL;
       stopDisplayTask = false;
-      vTaskDelete(NULL); // This is the proper way to exit a task
+      vTaskDelete(NULL);
     }
     
-    // Only update display if it should be on
     if(flagDisplay) {
       u8g2.clearBuffer();
 
@@ -180,13 +190,13 @@ void displayInfo(void *parameter) {
       // Show capture indicator
       if(flagCurrentMeasure) {
         u8g2.drawCircle(120, 56, 6);
-        u8g2.drawDisc(120, 56, 4);
+        u8g2.drawDisc(120, 56, 3);
+        flagCurrentMeasure = false;
       }
 
       u8g2.sendBuffer();
       vTaskDelay(1000 / portTICK_PERIOD_MS);
     } else {
-      // Display is off, clear screen and check less frequently
       u8g2.clearBuffer();
       u8g2.sendBuffer();
       vTaskDelay(100 / portTICK_PERIOD_MS);
