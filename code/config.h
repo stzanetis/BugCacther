@@ -5,3 +5,6 @@
 
 #define SDAPIN  22  // I2C Display SDA
 #define SCLPIN  20  // I2C Display SCL
+
+#define TWELVE_HOURS_US (20ULL * 1000000)   // 12 hours in microseconds
+#define TWELVE_HOURS_MS (20ULL * 1000)      // 12 hours in milliseconds
