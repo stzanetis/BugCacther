@@ -1,44 +1,41 @@
 #include "WiFiManager.h"
 
-String wifiSSID = "";
-String wifiPassword = "";
+// Local variables
+static String localSSID = "";
+static String localPassword = "";
 
 void setWiFiSSID(String ssid) {
   ssid.trim();
-  if(ssid.length() > 0) {
+  if(ssid.length() > 0 && ssid.endsWith("\n")) {
     ssid.remove(ssid.length() - 1);
   }
-  Serial.println("Setting WiFi SSID: " + ssid);
-  wifiSSID = ssid;
+  localSSID = ssid;
 }
 
 void setWiFiPassword(String password) {
   password.trim();
-  if (password.length() > 0) {
+  if (password.length() > 0 && password.endsWith("\n")) {
     password.remove(password.length() - 1);
   }
-  Serial.println("Setting WiFi Password: " + password);
-	wifiPassword = password;
+  localPassword = password;
 }
 
 bool connectWiFi() {
-  if (wifiSSID.isEmpty() || wifiPassword.isEmpty()) {
+  if (localSSID.isEmpty() || localPassword.isEmpty()) {
     Serial.println("WiFi SSID or Password not set");
     return false;
   } else {
-    WiFi.begin(wifiSSID.c_str(), wifiPassword.c_str());
+    WiFi.begin(localSSID.c_str(), localPassword.c_str());
     
     // Add timeout for connection
     unsigned long startTime = millis();
-    
     while (WiFi.status() != WL_CONNECTED) {
-      if (millis() - startTime > 1200000) {
-      Serial.println("\nWiFi connection timed out");
-      return false;
+      if (millis() - startTime > 30000) { // 30 second timeout
+        Serial.println("\nWiFi connection timed out");
+        return false;
       }
     }
-    
-    Serial.println("\nConnected to WiFi");
+
     return true;
   }
 }

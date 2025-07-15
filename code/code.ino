@@ -1,15 +1,13 @@
-#include <U8g2lib.h>
 #include "driver/rtc_io.h"
 #include "esp_sleep.h"
 #include "soc/rtc_cntl_reg.h"
 #include "soc/rtc.h"
 
-#include "src/WifiManager/WiFiManager.h"
+#include "src/DisplayManager/DisplayManager.h"
 #include "src/Measurements/Measurements.h"
+#include "src/WifiManager/WiFiManager.h"
 #include "src/BTManager/BTManager.h"
 #include "config.h"
-
-U8G2_SSD1306_128X64_NONAME_F_SW_I2C u8g2(U8G2_R0, SCLPIN, SDAPIN, U8X8_PIN_NONE);
 
 TaskHandle_t displayTaskHandle = NULL;
 volatile bool stopDisplayTask  = false;
@@ -28,16 +26,18 @@ volatile unsigned long lastBTN_ME = 0;
 volatile unsigned long lastSW_DIS = 0;
 volatile unsigned long lastSW_BLT = 0;
 
-// Status strings
-char* statusBluetooth = "Disabled";
-char* statusWiFi      = "Disabled";
+// Global variables kept between deep sleep cycles
+RTC_DATA_ATTR char wifiSSID[32] = "";             // Store SSID (max 32 chars)
+RTC_DATA_ATTR char wifiPassword[64] = "";         // Store password (max 64 chars)
+RTC_DATA_ATTR bool wifiCredentialsSet = false;    // Track if credentials are valid
+RTC_DATA_ATTR uint32_t measurementInterval = 20;  // Seconds between measurements
+RTC_DATA_ATTR int32_t timeShiftHours = 0;         // Hour shift for measurements
 
 // Gloabal variables
-static unsigned long lastScheduledMeasurement = 0;  // Track last scheduled measurement time
-RTC_DATA_ATTR uint32_t measurementInterval = 20;    // Seconds between measurements
-RTC_DATA_ATTR int32_t timeShiftHours = 0;
-float temperature;
-float humidity;
+static unsigned long lastScheduledMeasurement = 0;
+float temperature, humidity;
+char* statusBluetooth = "Disabled";
+char* statusWiFi      = "Disabled";
 
 void BTN_ME_ISR() {
   unsigned long currentTime = millis();
@@ -56,9 +56,6 @@ void SW_DIS_ISR() {
   if (currentTime - lastSW_DIS > 200) {
     if(flagWakeUp) {
       flagSleepRequest = true;
-      u8g2.clearBuffer();
-      u8g2.sendBuffer();
-      delay(500);
     }
     lastSW_DIS = currentTime;
   }
@@ -96,15 +93,12 @@ bool isTimeForScheduledMeasurement() {
 }
 
 void enterDeepSleep() {
-  Serial.println("Entering deep sleep...");
-  
   // Stop display task
   if(displayTaskHandle != NULL) {
     stopDisplayTask = true;
-    u8g2.clearBuffer();
-    u8g2.sendBuffer();
-
+    stopDisplay();
     vTaskDelay(300 / portTICK_PERIOD_MS);
+    delay(500);
   }
 
   // Turn off LED
@@ -128,24 +122,42 @@ void enterDeepSleep() {
 }
 
 void setup() {
-  Serial.begin(115200); // Baud rate for serial communication
-  u8g2.begin();         // Enable display
-  initDHT();            // Initialize DHT sensor
+  Serial.begin(115200);
+  initDHT();
 
-  lastScheduledMeasurement = millis();  // Initialize measurement schedule
-  handleWakeUp();                       // Handle wake-up reason
+  lastScheduledMeasurement = millis();
+  handleWakeUp();
 
-  pinMode (LEDPIN, OUTPUT);   // Set LED pin as output
-  digitalWrite(LEDPIN, HIGH); // Turn on LED
+  // Restore WiFi credentials from RTC memory after wake-up
+  if(wifiCredentialsSet) {
+    setWiFiSSID(String(wifiSSID));
+    setWiFiPassword(String(wifiPassword));
+  }
 
-  pinMode(BTN_ME, INPUT_PULLUP);  // Set Measure Button pin as input with pull-up resistor
-  attachInterrupt(BTN_ME, BTN_ME_ISR, FALLING); // Set ISR for Measure Button
-  pinMode(SW_DIS, INPUT_PULLUP);  // Set Display Switch pin as input with pull-up resistor
-  attachInterrupt(SW_DIS, SW_DIS_ISR, FALLING); // Set ISR for Display Switch
-  pinMode(SW_BLT, INPUT_PULLUP);  // Set Bluetooth Switch pin as input with pull-up resistor
-  attachInterrupt(SW_BLT, SW_BLT_ISR, FALLING); // Set ISR for Bluetooth Switch
+  pinMode (LEDPIN, OUTPUT);
+  digitalWrite(LEDPIN, HIGH);
 
-  xTaskCreatePinnedToCore(displayInfo, "displayInfo", 4096, NULL, 1, &displayTaskHandle, 0);
+  pinMode(BTN_ME, INPUT_PULLUP);
+  attachInterrupt(BTN_ME, BTN_ME_ISR, FALLING);
+  pinMode(SW_DIS, INPUT_PULLUP);
+  attachInterrupt(SW_DIS, SW_DIS_ISR, FALLING);
+  pinMode(SW_BLT, INPUT_PULLUP);
+  attachInterrupt(SW_BLT, SW_BLT_ISR, FALLING);
+
+  // Create display data structure
+  static DisplayData displayData = {
+    &statusBluetooth,
+    &statusWiFi,
+    &temperature,
+    &humidity,
+    &flagCurrentMeasure,
+    &stopDisplayTask,
+    &displayTaskHandle
+  };
+
+  // Pass the data structure to the display task
+  initDisplay();
+  xTaskCreatePinnedToCore(displayInfo, "displayInfo", 4096, &displayData, 1, &displayTaskHandle, 0);
 
   Serial.println("Setup Complete");
   if(!flagWakeUp && !flagTimer) {
@@ -156,17 +168,17 @@ void setup() {
 void loop() {
   static unsigned long lastActivity = millis();
 
-  // Check for scheduled measurements even when awake
-  if(isTimeForScheduledMeasurement() && !flagTimer) {
-    Serial.println("Time for scheduled measurement while awake");
-    flagTimer = true;
-  }
-
   // Handle sleep request when already awake
   if(flagSleepRequest) {
     Serial.println("Sleep requested by button");
     flagSleepRequest = false;
     enterDeepSleep();
+  }
+
+  // Check for scheduled measurements even when awake
+  if(isTimeForScheduledMeasurement() && !flagTimer) {
+    Serial.println("Time for scheduled measurement while awake");
+    flagTimer = true;
   }
 
   // Handle timer-based measurements
@@ -202,38 +214,73 @@ void loop() {
   }
 
   // Initialize/Deinitialize bluetooth only when flag changes
-  if(flagBluetooth && statusBluetooth == "Disabled") {
+  if(flagBluetooth && strcmp(statusBluetooth, "Disabled") == 0) {
     initBLE();
     statusBluetooth = "Enabled";
-  } else if(!flagBluetooth && (statusBluetooth == "Connected" || statusBluetooth == "Enabled")) {
+    lastActivity = millis();
+  } else if(!flagBluetooth && (strcmp(statusBluetooth, "Connected") == 0 || strcmp(statusBluetooth, "Enabled") == 0)) {
     if(stopBLE()) {
       statusBluetooth = "Disabled";
     }
+    lastActivity = millis();
   }
 
   // Handle bluetooth commands
   String command = getBLECommand();
   command.trim();
   if(!(command == "")) {
-    statusBluetooth = "Connected"; 
+    if(strcmp(statusBluetooth, "Enabled") == 0) {
+      statusBluetooth = "Connected";
+    }
     lastActivity = millis();
 
     if(command == "measure") {
       flagCurrentMeasure = true; 
       if(getDHTMeasurement(&temperature, &humidity)) {
         Serial.println("BT: DHT Measurement success");
-        sendBLEResponse("Temperature: " + String(temperature, 1) + "°C, Humidity: " + String(humidity, 1) + "%");
       }
-    }else if(command.startsWith("wifi_ssid:")) {
-      setWiFiSSID(command.substring(10));
-      Serial.println("BT: SSID set success");
+    } else if(command.startsWith("wifi_ssid:")) {
+      String ssid = command.substring(10);
+      ssid.trim();
+      
+      // Save to RTC memory
+      strncpy(wifiSSID, ssid.c_str(), sizeof(wifiSSID) - 1);
+      wifiSSID[sizeof(wifiSSID) - 1] = '\0';
+      wifiCredentialsSet = true;
+      
+      // Set in WiFi Manager
+      setWiFiSSID(ssid);
+      sendBLEResponse("SSID set and saved: " + String(wifiSSID));
+      Serial.println("BT: SSID set and saved to RTC memory: " + String(wifiSSID));
+
     } else if(command.startsWith("wifi_password:")) {
-      setWiFiPassword(command.substring(14));
-      Serial.println("BT: PASSWORD set success");
-    } else if(command == "wifi_test") {
+      String password = command.substring(14);
+      password.trim();
+
+      // Save to RTC memory
+      strncpy(wifiPassword, password.c_str(), sizeof(wifiPassword) - 1);
+      wifiPassword[sizeof(wifiPassword) - 1] = '\0';
+
+      // Set in WiFiManager
+      setWiFiPassword(password);
+      sendBLEResponse("Password set and saved");
+      Serial.println("BT: PASSWORD set and saved to RTC memory");
+
+    } else if(command == "wifi_connect") {
+      // Restore credentials from RTC memory before connecting
+      if(wifiCredentialsSet) {
+        setWiFiSSID(String(wifiSSID));
+        setWiFiPassword(String(wifiPassword));
+      }
+      
       if(connectWiFi()) {
         statusWiFi = "Connected";
+      } else {
+        statusWiFi = "Failed";
       }
+    } else if(.startsWith("shift:")) {
+      String shiftStr = command.substring(6);
+      timeShiftHours = shiftStr.toInt();
     } else {
       sendBLEResponse("Invalid command: " + command);
     }
@@ -248,40 +295,4 @@ void loop() {
   }
 
   delay(50);
-}
-
-void displayInfo(void *parameter) {
-  while(true) {
-    if(stopDisplayTask) {
-      u8g2.clearBuffer();
-      u8g2.sendBuffer();
-      
-      // Clean up and delete task
-      displayTaskHandle = NULL;
-      stopDisplayTask = false;
-      vTaskDelete(NULL);
-    } else{
-      u8g2.clearBuffer();
-
-      u8g2.setFont(u8g2_font_luBS08_tf);
-      u8g2.drawStr(0, 18, "BT: ");
-      u8g2.setFont(u8g2_font_luRS10_tf);
-      u8g2.drawStr(36, 18, statusBluetooth);
-
-      u8g2.setFont(u8g2_font_luBS08_tf);
-      u8g2.drawStr(1, 36, "Wi-Fi: ");
-      u8g2.setFont(u8g2_font_luRS10_tf);
-      u8g2.drawStr(36, 36, statusWiFi);
-
-      // Show capture indicator
-      if(flagCurrentMeasure) {
-        u8g2.drawCircle(120, 56, 6);
-        u8g2.drawDisc(120, 56, 3);
-        flagCurrentMeasure = false;
-      }
-
-      u8g2.sendBuffer();
-      vTaskDelay(1000 / portTICK_PERIOD_MS);
-    }
-  }
 }
