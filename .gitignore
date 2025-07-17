@@ -1,3 +1,13 @@
 /.vscode
+
+# Test files
 /tests
+
+# Backup files
 /old_versions
+
+# KiCad files
+/pcb/pcb-backups
+/pcb/_autosave-pcb.kicad_prl
+/pcb/_autosave-pcb.kicad_pro
+/pcb/fp-info-cache

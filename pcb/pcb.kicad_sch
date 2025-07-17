@@ -1,0 +1,3038 @@
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "9.0")
+	(uuid "c88c3819-9831-492b-a485-0f742a8f4c01")
+	(paper "A4")
+	(lib_symbols
+		(symbol "ProDoc_P1_-easyedapro:DHT11"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "ProDoc_P1_-easyedapro:"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "DHT11_1_0"
+				(polyline
+					(pts
+						(xy -7.5946 5.0546) (xy -7.5946 -10.1346)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -7.5946 -10.1346) (xy 5.0546 -10.1346)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 5.0546 5.0546) (xy -7.5946 5.0546)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 5.0546 -10.1346) (xy 5.0546 5.0546)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin input line
+					(at -5.0546 -12.6746 90)
+					(length 2.5146)
+					(name "VCC"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -2.5146 -12.6746 90)
+					(length 2.5146)
+					(name "D"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin no_connect line
+					(at 0 -12.6746 90)
+					(length 2.5146)
+					(name "NC"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 2.5146 -12.6746 90)
+					(length 2.5146)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "ProDoc_P1_-easyedapro:DISPLAY-OLED-128X64-I2C"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "ProDoc_P1_-easyedapro:"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "DISPLAY-OLED-128X64-I2C_1_0"
+				(polyline
+					(pts
+						(xy -14.224 13.0302) (xy 13.716 13.0302)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -14.224 -17.4244) (xy -14.224 13.0302)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -11.684 5.4102) (xy 11.176 5.4102)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -11.684 -9.8044) (xy -11.684 5.4102)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start -10.668 2.8702)
+					(end -9.144 4.3942)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start -10.668 0.3302)
+					(end -9.144 1.8542)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start -10.668 -2.1844)
+					(end -9.144 -0.6604)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start -8.128 2.8702)
+					(end -6.604 4.3942)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start -8.128 0.3302)
+					(end -6.604 1.8542)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start -5.588 2.8702)
+					(end -4.064 4.3942)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 11.176 5.4102) (xy 11.176 -9.8044)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 11.176 -9.8044) (xy -11.684 -9.8044)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 13.716 13.0302) (xy 13.716 -17.4244)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 13.716 -17.4244) (xy -14.224 -17.4244)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(text "128x64"
+					(at 2.2352 -7.5438 0)
+					(effects
+						(font
+							(face "宋体")
+							(size 0.9398 0.9398)
+						)
+						(justify left bottom)
+					)
+				)
+				(text "OLED"
+					(at 4.3688 -5.0038 0)
+					(effects
+						(font
+							(face "宋体")
+							(size 0.9398 0.9398)
+						)
+						(justify left bottom)
+					)
+				)
+				(pin bidirectional line
+					(at -4.064 18.034 270)
+					(length 4.9784)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at -1.524 18.034 270)
+					(length 4.9784)
+					(name "VCC"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at 1.016 18.034 270)
+					(length 4.9784)
+					(name "SCL"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at 3.556 18.034 270)
+					(length 4.9784)
+					(name "SDA"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "ProDoc_P1_-easyedapro:LED"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "ProDoc_P1_-easyedapro:"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Manufacturer Part" "19-217/BHC-ZL1M2RY/3T"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Manufacturer" "EVERLIGHT"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Supplier Part" "C72041"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Supplier" "LCSC"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "LED_1_0"
+				(polyline
+					(pts
+						(xy -2.286 1.778) (xy -1.27 1.27) (xy -1.778 0.762) (xy -2.286 1.778)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.27 2.794) (xy -0.254 2.286) (xy -0.762 1.778) (xy -1.27 2.794)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.27 -0.508) (xy -1.27 -3.556)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -0.508 0) (xy -2.286 1.778)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.508 1.016) (xy -1.27 2.794)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 -3.556) (xy -1.27 -2.032) (xy 1.27 -0.508) (xy 1.27 -3.556)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin input line
+					(at -5.08 -2.032 0)
+					(length 3.81)
+					(name "C"
+						(effects
+							(font
+								(size 0.0254 0.0254)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 0.0254 0.0254)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 5.08 -2.032 180)
+					(length 3.81)
+					(name "A"
+						(effects
+							(font
+								(size 0.0254 0.0254)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 0.0254 0.0254)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "ProDoc_P1_-easyedapro:Res"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "10K"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Footprint" "ProDoc_P1_-easyedapro:R0603"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "Res_1_0"
+				(rectangle
+					(start -2.54 1.016)
+					(end 2.54 -1.016)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin input line
+					(at -5.08 0 0)
+					(length 2.54)
+					(name "1"
+						(effects
+							(font
+								(size 0.0254 0.0254)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 0.0254 0.0254)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 5.08 0 180)
+					(length 2.54)
+					(name "2"
+						(effects
+							(font
+								(size 0.0254 0.0254)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 0.0254 0.0254)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "ProDoc_P1_-easyedapro:TS-1088-AR02016"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "ProDoc_P1_-easyedapro:SW-SMD_L3.9-W3.0-P4.45"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "https://atta.szlcsc.com/upload/public/pdf/source/20200810/C720475_60D09DD6C54279ADDB2DC25100F1CC11.pdf"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Circuit:SPST Actuator Style:Round Button Operating Force:160gf Mounting Style:Brick nogging Switch Length:4mm Switch Width:3mm Switch Height:2mm Strike Gundam:不带 Contact Current:50mA Voltage Rating (DC):12V Insulation Resistance:100MΩ Actuator/Cap Color:B"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Manufacturer Part" "TS-1088-AR02016"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Manufacturer" "XUNPU(讯普)"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Supplier Part" "C720477"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Supplier" "LCSC"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "LCSC Part Name" "4*3*2mm 立贴 轻触开关"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "TS-1088-AR02016_1_0"
+				(polyline
+					(pts
+						(xy -5.08 0) (xy -2.54 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -2.286 0.508) (xy 2.032 1.778)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 5.08 0) (xy 2.54 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin unspecified line
+					(at -7.62 0 0)
+					(length 2.54)
+					(name "1"
+						(effects
+							(font
+								(size 0.0254 0.0254)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin unspecified line
+					(at 7.62 0 180)
+					(length 2.54)
+					(name "2"
+						(effects
+							(font
+								(size 0.0254 0.0254)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "ProDoc_P1_-easyedapro:adafruit-esp32-feather-v2"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "ProDoc_P1_-easyedapro:"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "adafruit-esp32-feather-v2_1_0"
+				(rectangle
+					(start -7.62 21.59)
+					(end 7.62 -20.32)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin input line
+					(at -12.7 19.05 0)
+					(length 5.08)
+					(name "RST"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -12.7 16.51 0)
+					(length 5.08)
+					(name "3V"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -12.7 13.97 0)
+					(length 5.08)
+					(name "5A0"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -12.7 11.43 0)
+					(length 5.08)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -12.7 8.89 0)
+					(length 5.08)
+					(name "A0"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -12.7 6.35 0)
+					(length 5.08)
+					(name "A1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "6"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -12.7 3.81 0)
+					(length 5.08)
+					(name "A2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "7"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -12.7 1.27 0)
+					(length 5.08)
+					(name "A3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "8"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -12.7 -1.27 0)
+					(length 5.08)
+					(name "A4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "9"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -12.7 -3.81 0)
+					(length 5.08)
+					(name "A5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "10"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -12.7 -6.35 0)
+					(length 5.08)
+					(name "SCK"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "11"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -12.7 -8.89 0)
+					(length 5.08)
+					(name "MO"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "12"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -12.7 -11.43 0)
+					(length 5.08)
+					(name "MI"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "13"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -12.7 -13.97 0)
+					(length 5.08)
+					(name "RX"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "14"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -12.7 -16.51 0)
+					(length 5.08)
+					(name "TX"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "15"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -12.7 -19.05 0)
+					(length 5.08)
+					(name "37"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "16"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 12.7 8.89 180)
+					(length 5.08)
+					(name "BAT"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "28"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 12.7 6.35 180)
+					(length 5.08)
+					(name "EN"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "27"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 12.7 3.81 180)
+					(length 5.08)
+					(name "USB"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "26"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 12.7 1.27 180)
+					(length 5.08)
+					(name "13"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "25"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 12.7 -1.27 180)
+					(length 5.08)
+					(name "12"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "24"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 12.7 -3.81 180)
+					(length 5.08)
+					(name "27"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "23"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 12.7 -6.35 180)
+					(length 5.08)
+					(name "33"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "22"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 12.7 -8.89 180)
+					(length 5.08)
+					(name "15"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "21"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 12.7 -11.43 180)
+					(length 5.08)
+					(name "32"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "20"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 12.7 -13.97 180)
+					(length 5.08)
+					(name "14"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "19"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 12.7 -16.51 180)
+					(length 5.08)
+					(name "SCL"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "18"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 12.7 -19.05 180)
+					(length 5.08)
+					(name "SDA"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "17"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+	)
+	(text "SPI CAMERA"
+		(exclude_from_sim no)
+		(at 71.12 104.14 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "2cdbec1a-f20b-41de-9d76-1fa223b927b6")
+	)
+	(junction
+		(at 118.11 69.85)
+		(diameter 0)
+		(color 5 5 5 1)
+		(uuid "03211d07-404a-4ac9-96d8-7e95039e63ee")
+	)
+	(junction
+		(at 200.66 62.23)
+		(diameter 0)
+		(color 5 5 5 1)
+		(uuid "0360deb2-dc63-4653-bd75-131a6d118df8")
+	)
+	(junction
+		(at 120.65 67.31)
+		(diameter 0)
+		(color 255 56 57 1)
+		(uuid "440e6f23-58ad-44ce-8f32-57bf0d1fd519")
+	)
+	(junction
+		(at 118.11 97.79)
+		(diameter 0)
+		(color 0 0 0 1)
+		(uuid "575984ec-1458-4506-96c7-cafdf512a7be")
+	)
+	(junction
+		(at 200.66 55.88)
+		(diameter 0)
+		(color 5 5 5 1)
+		(uuid "ab2919c1-1d05-4f30-b757-a86061008d5f")
+	)
+	(junction
+		(at 163.83 49.53)
+		(diameter 0)
+		(color 5 5 5 1)
+		(uuid "d8378bee-1691-4005-b6c9-3a184a9abf7c")
+	)
+	(junction
+		(at 120.65 100.33)
+		(diameter 0)
+		(color 255 56 57 1)
+		(uuid "d970fcd4-4034-4e4b-a4c3-197180aaf093")
+	)
+	(junction
+		(at 114.3 69.85)
+		(diameter 0)
+		(color 0 0 0 1)
+		(uuid "e14f6332-532a-4699-8fc6-efa648be3a3a")
+	)
+	(no_connect
+		(at 133.35 97.79)
+		(uuid "04ac62ea-0e40-40ed-ab69-e97fd8955a25")
+	)
+	(no_connect
+		(at 158.75 85.09)
+		(uuid "0a8fac34-87fe-4b99-9c60-421a61ab3607")
+	)
+	(no_connect
+		(at 133.35 62.23)
+		(uuid "15cb8aa9-6c79-4865-880d-930e64226fcd")
+	)
+	(no_connect
+		(at 71.12 97.79)
+		(uuid "21d02c5c-9ed9-48e3-8336-d4b657624dd4")
+	)
+	(no_connect
+		(at 71.12 100.33)
+		(uuid "3b583cc6-f92a-4d50-8452-0b4646dcfd2e")
+	)
+	(no_connect
+		(at 133.35 77.47)
+		(uuid "466a0ffa-ca64-47f3-a200-2803ffc65403")
+	)
+	(no_connect
+		(at 133.35 80.01)
+		(uuid "4aca2769-1bfe-40cd-87a0-d71da4765637")
+	)
+	(no_connect
+		(at 71.12 92.71)
+		(uuid "4f11756e-60f6-42dd-bda9-c133ea4b841b")
+	)
+	(no_connect
+		(at 133.35 72.39)
+		(uuid "70e197c9-fb2e-470e-92b4-a40173ca454b")
+	)
+	(no_connect
+		(at 133.35 67.31)
+		(uuid "7420b09e-337a-4974-bef2-a0a91d77cff3")
+	)
+	(no_connect
+		(at 71.12 90.17)
+		(uuid "82e62d0f-3e73-4c4e-9b21-8d56c8798037")
+	)
+	(no_connect
+		(at 158.75 77.47)
+		(uuid "9a9e46ee-4fcc-4b24-a8aa-2282fe37dc76")
+	)
+	(no_connect
+		(at 158.75 72.39)
+		(uuid "bd28b561-bdd2-4869-b246-ccf1c2b024ce")
+	)
+	(no_connect
+		(at 133.35 100.33)
+		(uuid "cf292a81-2be3-4603-95f1-3493822354a0")
+	)
+	(no_connect
+		(at 133.35 74.93)
+		(uuid "d01b8c95-ee44-4c10-90a0-fd7b54abce80")
+	)
+	(no_connect
+		(at 71.12 95.25)
+		(uuid "d6ca744f-ee54-4b5b-bd6b-cbac316e1809")
+	)
+	(no_connect
+		(at 158.75 80.01)
+		(uuid "d7546bb0-9a02-455e-ae10-66a6ab7f70b2")
+	)
+	(no_connect
+		(at 133.35 82.55)
+		(uuid "ed27edc5-773b-4c8f-82df-3b901471f77c")
+	)
+	(no_connect
+		(at 158.75 74.93)
+		(uuid "ef39eb88-c010-4314-9918-45567b63825d")
+	)
+	(no_connect
+		(at 158.75 82.55)
+		(uuid "f1ddcd07-f268-4912-93b0-1a470af714a1")
+	)
+	(no_connect
+		(at 71.12 87.63)
+		(uuid "f4a61bcc-5030-4357-9197-1e4788de4f4d")
+	)
+	(wire
+		(pts
+			(xy 165.1 49.53) (xy 163.83 49.53)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 0 0 0 1)
+		)
+		(uuid "0132c5d5-fa0f-4d33-8895-f971dc03b391")
+	)
+	(wire
+		(pts
+			(xy 158.75 92.71) (xy 226.06 92.71)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 213 50 77 1)
+		)
+		(uuid "01f13790-e4a1-489e-9077-5a46f0fb942c")
+	)
+	(wire
+		(pts
+			(xy 120.65 100.33) (xy 71.12 100.33)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 255 56 57 1)
+		)
+		(uuid "048e29ad-9ae6-4013-9719-ca83a8046453")
+	)
+	(wire
+		(pts
+			(xy 120.65 64.77) (xy 120.65 67.31)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 255 56 57 1)
+		)
+		(uuid "06754679-5972-465a-9c07-ddf3a025037e")
+	)
+	(wire
+		(pts
+			(xy 193.04 107.95) (xy 193.04 100.33)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 46 255 73 1)
+		)
+		(uuid "133e60a1-8245-4388-bd15-14a27889d049")
+	)
+	(wire
+		(pts
+			(xy 120.65 64.77) (xy 133.35 64.77)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 255 56 57 1)
+		)
+		(uuid "156286f4-80f7-47bd-944a-3ff95315bb94")
+	)
+	(wire
+		(pts
+			(xy 88.9 67.31) (xy 88.9 54.61)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 255 56 57 1)
+		)
+		(uuid "157ab06d-74a2-4ec2-b268-c74f91af620f")
+	)
+	(wire
+		(pts
+			(xy 158.75 90.17) (xy 223.52 90.17)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 140 88 59 1)
+		)
+		(uuid "176acca3-8b82-446d-9f39-04890ac057e0")
+	)
+	(wire
+		(pts
+			(xy 218.44 62.23) (xy 223.52 62.23)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 140 88 59 1)
+		)
+		(uuid "25468f74-da8e-41e9-86ac-3e194beceea6")
+	)
+	(wire
+		(pts
+			(xy 200.66 74.93) (xy 200.66 62.23)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 5 5 5 1)
+		)
+		(uuid "27f5efb4-2fa8-4bcb-a95f-59764e67573e")
+	)
+	(wire
+		(pts
+			(xy 163.83 49.53) (xy 163.83 55.88)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 5 5 5 1)
+		)
+		(uuid "31e720cb-766c-4119-b7ef-e334c40da1bf")
+	)
+	(wire
+		(pts
+			(xy 193.04 100.33) (xy 158.75 100.33)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 46 255 73 1)
+		)
+		(uuid "33c9e994-9d7d-498d-91c3-a60208883699")
+	)
+	(wire
+		(pts
+			(xy 96.4946 69.85) (xy 96.4946 54.61)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 5 5 5 1)
+		)
+		(uuid "396df9f5-4171-4d76-8037-c3dca5d7ad38")
+	)
+	(wire
+		(pts
+			(xy 220.98 74.93) (xy 220.98 87.63)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 163 208 102 1)
+		)
+		(uuid "3ceaf185-befa-48df-949e-c076e4bc545b")
+	)
+	(wire
+		(pts
+			(xy 200.66 49.53) (xy 200.66 55.88)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 5 5 5 1)
+		)
+		(uuid "3f215b48-f76a-477f-b010-314388ec91eb")
+	)
+	(wire
+		(pts
+			(xy 114.3 49.53) (xy 163.83 49.53)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 5 5 5 1)
+		)
+		(uuid "41e189e7-b14e-4cab-890e-723a12fdbc79")
+	)
+	(wire
+		(pts
+			(xy 118.11 69.85) (xy 114.3 69.85)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 5 5 5 1)
+		)
+		(uuid "45d3bf8c-8ed9-4dbb-a373-a27806e5cf1d")
+	)
+	(wire
+		(pts
+			(xy 185.42 95.25) (xy 158.75 95.25)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 155 44 145 1)
+		)
+		(uuid "46d4119c-e7d2-439b-a679-4151a762e38c")
+	)
+	(wire
+		(pts
+			(xy 218.44 49.53) (xy 226.06 49.53)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 213 50 77 1)
+		)
+		(uuid "4f0f0fc8-0dfb-4275-b603-0496dda49be3")
+	)
+	(wire
+		(pts
+			(xy 120.65 100.33) (xy 120.65 105.41)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 255 56 57 1)
+		)
+		(uuid "50835ca9-a163-4d54-935b-fbbab99c3972")
+	)
+	(wire
+		(pts
+			(xy 96.4946 69.85) (xy 114.3 69.85)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 5 5 5 1)
+		)
+		(uuid "5c4bb751-7775-4ce4-abfa-d91fc738912e")
+	)
+	(wire
+		(pts
+			(xy 118.11 69.85) (xy 118.11 97.79)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 5 5 5 1)
+		)
+		(uuid "72f5d69a-7276-47cd-9250-1da96c569fc0")
+	)
+	(wire
+		(pts
+			(xy 133.35 90.17) (xy 71.12 90.17)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 127 222 221 1)
+		)
+		(uuid "72f819c0-5e0b-4d95-8633-15906db991ba")
+	)
+	(wire
+		(pts
+			(xy 118.11 97.79) (xy 71.12 97.79)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 5 5 5 1)
+		)
+		(uuid "77bf90e1-faab-481f-a0e6-e42b71035e99")
+	)
+	(wire
+		(pts
+			(xy 223.52 90.17) (xy 223.52 62.23)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 140 88 59 1)
+		)
+		(uuid "7929f677-9aff-442a-94bc-bb348714a4ee")
+	)
+	(wire
+		(pts
+			(xy 200.66 55.88) (xy 200.66 62.23)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 5 5 5 1)
+		)
+		(uuid "7cdca49f-b681-46fc-9ee6-7e5c146d9e38")
+	)
+	(wire
+		(pts
+			(xy 158.75 87.63) (xy 220.98 87.63)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 163 208 102 1)
+		)
+		(uuid "7db3599e-f69f-4c8a-ba3f-40198ca88937")
+	)
+	(wire
+		(pts
+			(xy 220.98 74.93) (xy 218.44 74.93)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 163 208 102 1)
+		)
+		(uuid "8a1fa51f-a0c6-4b20-8184-425dccc95e05")
+	)
+	(wire
+		(pts
+			(xy 133.35 69.85) (xy 118.11 69.85)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 5 5 5 1)
+		)
+		(uuid "8d70ea92-e2bc-4ce4-8986-b324bdeed3df")
+	)
+	(wire
+		(pts
+			(xy 71.12 87.63) (xy 133.35 87.63)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 210 77 222 1)
+		)
+		(uuid "8d7660a8-a5f6-4dab-ad81-1ec6732834fd")
+	)
+	(wire
+		(pts
+			(xy 200.66 74.93) (xy 203.2 74.93)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 5 5 5 1)
+		)
+		(uuid "98c4c4c0-988c-41c2-bfba-fe0b3c177d63")
+	)
+	(wire
+		(pts
+			(xy 200.66 49.53) (xy 203.2 49.53)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 0 0 0 1)
+		)
+		(uuid "9a48f9f1-0b13-4dd0-b92f-6c577952f619")
+	)
+	(wire
+		(pts
+			(xy 120.65 100.33) (xy 120.65 67.31)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 255 56 57 1)
+		)
+		(uuid "a2487f01-42a8-4523-a592-82c199c6e45c")
+	)
+	(wire
+		(pts
+			(xy 120.65 67.31) (xy 88.9 67.31)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 255 56 57 1)
+		)
+		(uuid "a4ac4a4e-f2a8-4855-8917-45fbe8d833cd")
+	)
+	(wire
+		(pts
+			(xy 118.11 107.95) (xy 185.42 107.95)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 5 5 5 1)
+		)
+		(uuid "a7f2dd24-b515-462c-b84d-48d4af8c8df2")
+	)
+	(wire
+		(pts
+			(xy 114.3 69.85) (xy 114.3 49.53)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 5 5 5 1)
+		)
+		(uuid "ad9eea5e-b8f6-4518-9cfe-1ebe2e9ea0a2")
+	)
+	(wire
+		(pts
+			(xy 120.65 105.41) (xy 187.96 105.41)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 255 56 57 1)
+		)
+		(uuid "b7c8e092-8b1e-4a3f-b076-16f203a473b7")
+	)
+	(wire
+		(pts
+			(xy 185.42 95.25) (xy 185.42 49.53)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 155 44 145 1)
+		)
+		(uuid "bedc9379-5507-42f3-9eba-45d177f1c176")
+	)
+	(wire
+		(pts
+			(xy 226.06 92.71) (xy 226.06 49.53)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 213 50 77 1)
+		)
+		(uuid "c0e49e3e-7a04-42c9-a54f-339fb16e24e1")
+	)
+	(wire
+		(pts
+			(xy 91.4146 72.39) (xy 91.4146 54.61)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 255 224 110 1)
+		)
+		(uuid "c5245693-83e7-4534-8b42-b8bf7397c5be")
+	)
+	(wire
+		(pts
+			(xy 133.35 85.09) (xy 123.19 85.09)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 255 224 110 1)
+		)
+		(uuid "d8fd1aaa-aacb-4169-913e-6086c724e0b3")
+	)
+	(wire
+		(pts
+			(xy 133.35 95.25) (xy 71.12 95.25)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 255 142 11 1)
+		)
+		(uuid "da7ecc33-6140-4eac-8bc0-15aa4539344f")
+	)
+	(wire
+		(pts
+			(xy 123.19 85.09) (xy 123.19 72.39)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 255 224 110 1)
+		)
+		(uuid "dbde8bf8-d0b8-4e5d-8a5c-23ab75d82542")
+	)
+	(wire
+		(pts
+			(xy 200.66 62.23) (xy 203.2 62.23)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 5 5 5 1)
+		)
+		(uuid "ea38424f-e58a-4326-b174-d87f84d767fc")
+	)
+	(wire
+		(pts
+			(xy 190.5 97.79) (xy 190.5 107.95)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 81 94 255 1)
+		)
+		(uuid "ecaf6541-8163-4631-8305-38710b07c271")
+	)
+	(wire
+		(pts
+			(xy 200.66 55.88) (xy 163.83 55.88)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 5 5 5 1)
+		)
+		(uuid "ed02821e-07be-4a5e-ab32-02e14fc369de")
+	)
+	(wire
+		(pts
+			(xy 187.96 105.41) (xy 187.96 107.95)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 255 56 57 1)
+		)
+		(uuid "ef05cb03-4ea9-4424-8c00-12fc1f7d39dd")
+	)
+	(wire
+		(pts
+			(xy 158.75 97.79) (xy 190.5 97.79)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 81 94 255 1)
+		)
+		(uuid "f424f4a2-0604-4bd1-a4a8-dfa043145fbc")
+	)
+	(wire
+		(pts
+			(xy 118.11 107.95) (xy 118.11 97.79)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 5 5 5 1)
+		)
+		(uuid "f51b7e95-924c-4eb8-b730-44a0f31a3bab")
+	)
+	(wire
+		(pts
+			(xy 123.19 72.39) (xy 91.4146 72.39)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+			(color 255 224 110 1)
+		)
+		(uuid "f67df6a8-b3f8-400b-bf5e-33b4a9bd28bb")
+	)
+	(wire
+		(pts
+			(xy 133.35 92.71) (xy 71.12 92.71)
+		)
+		(stroke
+			(width 0.2032)
+			(type default)
+		)
+		(uuid "fd032859-3987-4bd5-805a-a42ab043e32f")
+	)
+	(symbol
+		(lib_id "ProDoc_P1_-easyedapro:LED")
+		(at 170.18 47.498 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "148355d2-5400-4bc7-b90d-f8132285d796")
+		(property "Reference" "LED1"
+			(at 171.45 46.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Value" "19-217/BHC-ZL1M2RY/3T"
+			(at 167.64 53.848 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "ProDoc_P1_-easyedapro:"
+			(at 170.18 47.498 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 170.18 47.498 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 170.18 47.498 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer Part" "19-217/BHC-ZL1M2RY/3T"
+			(at 170.18 47.498 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "EVERLIGHT"
+			(at 170.18 47.498 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Part" "C72041"
+			(at 170.18 47.498 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier" "LCSC"
+			(at 170.18 47.498 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "ee205b9c-54bb-4f9a-a39a-34e3e590b60d")
+		)
+		(pin "1"
+			(uuid "897c26bd-1367-438e-9d69-2fe50b724bf0")
+		)
+		(instances
+			(project "bugcatcher_pcb"
+				(path "/c88c3819-9831-492b-a485-0f742a8f4c01"
+					(reference "LED1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "ProDoc_P1_-easyedapro:TS-1088-AR02016")
+		(at 210.82 74.93 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "502b0aae-3a7e-4c87-8fb8-90f61e197da7")
+		(property "Reference" "SW_WAKEUP1"
+			(at 201.93 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Value" "TS-1088-AR02016"
+			(at 205.74 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "ProDoc_P1_-easyedapro:SW-SMD_L3.9-W3.0-P4.45"
+			(at 210.82 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://atta.szlcsc.com/upload/public/pdf/source/20200810/C720475_60D09DD6C54279ADDB2DC25100F1CC11.pdf"
+			(at 210.82 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Circuit:SPST Actuator Style:Round Button Operating Force:160gf Mounting Style:Brick nogging Switch Length:4mm Switch Width:3mm Switch Height:2mm Strike Gundam:不带 Contact Current:50mA Voltage Rating (DC):12V Insulation Resistance:100MΩ Actuator/Cap Color:B"
+			(at 210.82 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer Part" "TS-1088-AR02016"
+			(at 210.82 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "XUNPU(讯普)"
+			(at 210.82 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Part" "C720477"
+			(at 210.82 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier" "LCSC"
+			(at 210.82 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC Part Name" "4*3*2mm 立贴 轻触开关"
+			(at 210.82 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "68f9a967-42fc-4b1f-b136-baf0463b1d85")
+		)
+		(pin "1"
+			(uuid "4384726e-fc61-4436-a380-b2f4f38ad0c4")
+		)
+		(instances
+			(project "bugcatcher_pcb"
+				(path "/c88c3819-9831-492b-a485-0f742a8f4c01"
+					(reference "SW_WAKEUP1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "ProDoc_P1_-easyedapro:DHT11")
+		(at 93.9546 41.9354 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "5ff59f50-1c67-4d8c-b8e3-5b8598f9d784")
+		(property "Reference" "DHT11"
+			(at 86.3346 35.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Value" "~"
+			(at 93.9546 41.9354 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "ProDoc_P1_-easyedapro:"
+			(at 93.9546 41.9354 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 93.9546 41.9354 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 93.9546 41.9354 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin ""
+			(uuid "77fc212e-3f62-475b-b773-9f545d58432f")
+		)
+		(pin ""
+			(uuid "33ac197d-d2c2-4f01-9287-5481769544e8")
+		)
+		(pin ""
+			(uuid "534d43ed-5a3d-48f3-9e96-62e58eb61db9")
+		)
+		(pin ""
+			(uuid "51799b9f-1366-4dc9-a158-b63fd4d905a9")
+		)
+		(instances
+			(project "bugcatcher_pcb"
+				(path "/c88c3819-9831-492b-a485-0f742a8f4c01"
+					(reference "DHT11")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "ProDoc_P1_-easyedapro:adafruit-esp32-feather-v2")
+		(at 146.05 81.28 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "8ad46294-8a4d-4498-8e86-9ac380aa62ae")
+		(property "Reference" "ESP-32"
+			(at 138.43 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Value" "~"
+			(at 146.05 81.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "ProDoc_P1_-easyedapro:"
+			(at 146.05 81.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 146.05 81.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 146.05 81.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "23"
+			(uuid "ae5eda4e-1958-42c8-b93e-43a9a033caf4")
+		)
+		(pin "5"
+			(uuid "e124d31d-b48d-4232-a80a-4a8125a4f239")
+		)
+		(pin "28"
+			(uuid "dac9f2f4-fbb9-4aef-9b45-725d6a31e751")
+		)
+		(pin "4"
+			(uuid "0b84e64a-7dd9-498a-8c6d-e60fdf7717d9")
+		)
+		(pin "8"
+			(uuid "6ee5fd75-d224-4ca5-9c9f-7944f8258788")
+		)
+		(pin "11"
+			(uuid "56006116-5faa-40ce-a549-1645d0946ccf")
+		)
+		(pin "3"
+			(uuid "f7edcb9f-e422-44fd-97b7-f53f0368a015")
+		)
+		(pin "10"
+			(uuid "492c5511-a819-49f9-9448-b7f3f7a8a3f6")
+		)
+		(pin "14"
+			(uuid "cbd623d2-d53c-4cb5-897b-5b4e533d2ec1")
+		)
+		(pin "27"
+			(uuid "4bba45b3-5fb4-4a6d-a072-fc96cd4b0ed8")
+		)
+		(pin "24"
+			(uuid "6e60237c-009d-40d9-99f7-ccd6bbac765c")
+		)
+		(pin "6"
+			(uuid "fc0ae5e2-e6bf-4bfe-b38c-8a5204a4ed23")
+		)
+		(pin "9"
+			(uuid "899dbfb8-2e69-4cb3-8e8c-744333479482")
+		)
+		(pin "26"
+			(uuid "505c1396-c187-4c85-a6f6-66777a94e35c")
+		)
+		(pin "1"
+			(uuid "e4e846a9-18ef-4cf6-b4e9-e2ff1b0853d4")
+		)
+		(pin "25"
+			(uuid "25562f81-356c-4d40-b7f6-9f05ed7c038a")
+		)
+		(pin "22"
+			(uuid "977fed55-75c4-4d48-9a0f-994836e43b5d")
+		)
+		(pin "2"
+			(uuid "4782407c-859d-4ee1-a127-e4868a18f502")
+		)
+		(pin "21"
+			(uuid "33fb8a27-7808-4526-90be-c30303d86d6b")
+		)
+		(pin "7"
+			(uuid "42ec7f32-9ca3-4409-94d6-54ce8c573cb4")
+		)
+		(pin "12"
+			(uuid "0a1f9a84-2eab-4f3a-8fb3-655e33f28809")
+		)
+		(pin "16"
+			(uuid "96efe9a1-e35b-4662-a0db-45154c4d794d")
+		)
+		(pin "13"
+			(uuid "5a5a59ef-8f75-48bd-83d1-dbf3121b5225")
+		)
+		(pin "15"
+			(uuid "d8729107-4014-48af-89fe-615e548190e8")
+		)
+		(pin "17"
+			(uuid "8d26b2f3-8f7a-47a3-a9b8-c2e55c87aa36")
+		)
+		(pin "20"
+			(uuid "dfc53f89-111e-4a45-bc0f-b3ec15893938")
+		)
+		(pin "19"
+			(uuid "3e1208ed-691f-430d-8dde-b2c40eacc294")
+		)
+		(pin "18"
+			(uuid "2cc2ebe5-958b-41f9-b3fd-3de134ac7f5e")
+		)
+		(instances
+			(project "bugcatcher_pcb"
+				(path "/c88c3819-9831-492b-a485-0f742a8f4c01"
+					(reference "ESP-32")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "ProDoc_P1_-easyedapro:TS-1088-AR02016")
+		(at 210.82 62.23 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "aa03c37b-dfcc-4dcc-a953-c3fc1ca9f732")
+		(property "Reference" "SW_BLT1"
+			(at 201.93 58.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Value" "TS-1088-AR02016"
+			(at 205.74 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "ProDoc_P1_-easyedapro:SW-SMD_L3.9-W3.0-P4.45"
+			(at 210.82 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://atta.szlcsc.com/upload/public/pdf/source/20200810/C720475_60D09DD6C54279ADDB2DC25100F1CC11.pdf"
+			(at 210.82 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Circuit:SPST Actuator Style:Round Button Operating Force:160gf Mounting Style:Brick nogging Switch Length:4mm Switch Width:3mm Switch Height:2mm Strike Gundam:不带 Contact Current:50mA Voltage Rating (DC):12V Insulation Resistance:100MΩ Actuator/Cap Color:B"
+			(at 210.82 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer Part" "TS-1088-AR02016"
+			(at 210.82 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "XUNPU(讯普)"
+			(at 210.82 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Part" "C720477"
+			(at 210.82 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier" "LCSC"
+			(at 210.82 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC Part Name" "4*3*2mm 立贴 轻触开关"
+			(at 210.82 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "27452a30-3fb3-4ac9-8f5c-c198e3d11b17")
+		)
+		(pin "1"
+			(uuid "836ec692-3ffa-40b4-a914-613cb81f6591")
+		)
+		(instances
+			(project "bugcatcher_pcb"
+				(path "/c88c3819-9831-492b-a485-0f742a8f4c01"
+					(reference "SW_BLT1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "ProDoc_P1_-easyedapro:Res")
+		(at 180.34 49.53 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "d57cd1e7-bee6-46a9-ba60-e52fc3ba8254")
+		(property "Reference" "R1"
+			(at 177.8 48.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Value" "10K"
+			(at 177.8 53.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Footprint" "ProDoc_P1_-easyedapro:R0603"
+			(at 180.34 49.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 180.34 49.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 180.34 49.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "f2774c0b-50eb-414d-b54f-27dac0f55b5e")
+		)
+		(pin "2"
+			(uuid "1ffc4a85-5a9c-4203-9849-36203974357f")
+		)
+		(instances
+			(project "bugcatcher_pcb"
+				(path "/c88c3819-9831-492b-a485-0f742a8f4c01"
+					(reference "R1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "ProDoc_P1_-easyedapro:TS-1088-AR02016")
+		(at 210.82 49.53 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "f450b8cf-41d5-4ce3-b842-3be8445be878")
+		(property "Reference" "BTN_MEASURE1"
+			(at 201.93 45.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Value" "TS-1088-AR02016"
+			(at 205.74 53.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "ProDoc_P1_-easyedapro:SW-SMD_L3.9-W3.0-P4.45"
+			(at 210.82 49.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://atta.szlcsc.com/upload/public/pdf/source/20200810/C720475_60D09DD6C54279ADDB2DC25100F1CC11.pdf"
+			(at 210.82 49.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Circuit:SPST Actuator Style:Round Button Operating Force:160gf Mounting Style:Brick nogging Switch Length:4mm Switch Width:3mm Switch Height:2mm Strike Gundam:不带 Contact Current:50mA Voltage Rating (DC):12V Insulation Resistance:100MΩ Actuator/Cap Color:B"
+			(at 210.82 49.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer Part" "TS-1088-AR02016"
+			(at 210.82 49.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "XUNPU(讯普)"
+			(at 210.82 49.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Part" "C720477"
+			(at 210.82 49.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier" "LCSC"
+			(at 210.82 49.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC Part Name" "4*3*2mm 立贴 轻触开关"
+			(at 210.82 49.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "9dafafea-c0ef-46e2-96b4-68212c79e87d")
+		)
+		(pin "2"
+			(uuid "c7c536dc-bdfc-4e22-bb7d-65d25a5f0104")
+		)
+		(instances
+			(project "bugcatcher_pcb"
+				(path "/c88c3819-9831-492b-a485-0f742a8f4c01"
+					(reference "BTN_MEASURE1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "ProDoc_P1_-easyedapro:DISPLAY-OLED-128X64-I2C")
+		(at 189.484 125.984 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "fa0c292c-2302-4901-bd85-a591d31d2438")
+		(property "Reference" "U1"
+			(at 204.724 108.204 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+				(hide yes)
+			)
+		)
+		(property "Value" "I2C OLED DISPLAY"
+			(at 175.26 147.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Footprint" "ProDoc_P1_-easyedapro:"
+			(at 189.484 125.984 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 189.484 125.984 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 189.484 125.984 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "3"
+			(uuid "3f5e18a3-9d2b-4bf4-9eef-f0efa866d907")
+		)
+		(pin "4"
+			(uuid "0a5ce01c-ce37-4c44-b523-d1e6bae4d240")
+		)
+		(pin "2"
+			(uuid "0bbacc80-5cad-481c-85d3-c8b93afd85de")
+		)
+		(pin "1"
+			(uuid "3e02eedb-afe0-4076-80a1-ef175b08727a")
+		)
+		(instances
+			(project "bugcatcher_pcb"
+				(path "/c88c3819-9831-492b-a485-0f742a8f4c01"
+					(reference "U1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+	(embedded_fonts no)
+)

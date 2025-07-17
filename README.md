@@ -30,5 +30,7 @@ Connect to device name: `BugCatcher-BT`
 Available commands:
 
 - `measure` - Get current temperature and humidity reading
-- `wifipass` - Configure WiFi password (planned feature)
-- `wificssid` - Configure WiFi SSID (planned feature)
+- `wifi_pass:<password>` - Configure WiFi password
+- `wifi_ssid:<ssid>` - Configure WiFi SSID
+- `wifi_connect` - Test WiFi connection
+- `shift:<number>` - Add time shift for periodic measurements

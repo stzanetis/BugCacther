@@ -278,7 +278,7 @@ void loop() {
       } else {
         statusWiFi = "Failed";
       }
-    } else if(.startsWith("shift:")) {
+    } else if(command.startsWith("shift:")) {
       String shiftStr = command.substring(6);
       timeShiftHours = shiftStr.toInt();
     } else {
