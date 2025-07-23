@@ -1,5 +1,6 @@
 #include <WiFi.h>
 #include <HTTPClient.h>
+//#include "../Measurements/Measurements.h"
 
 #define BACKEND_URL "https://your-backend-url.com/api/data"
 
@@ -9,3 +10,4 @@ void setWiFiSSID(String ssid);
 void setWiFiPassword(String password);
 bool connectWiFi();
 void disconnectWiFi();
+//bool sendMeasurement(bool useFlash);

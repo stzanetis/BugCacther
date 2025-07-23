@@ -3,6 +3,8 @@
 // Local variables
 static String localSSID = "";
 static String localPassword = "";
+//int temp;
+//int hum;
 
 void setWiFiSSID(String ssid) {
   ssid.trim();
@@ -44,3 +46,34 @@ void disconnectWiFi() {
   WiFi.disconnect(true);
   WiFi.mode(WIFI_OFF);
 }
+
+//bool sendMeasurement(bool useFlash) {
+//  if(!connectWifi()) {
+//    Serial.println("Failed to connect to WiFi");
+//    return false;
+//  }
+
+//  if(useFlash) {
+//    // Enable flash before capturing
+//    pinMode(FLASHPIN, OUTPUT);
+//    digitalWrite(FLASHPIN, HIGH);
+//    delay(100);
+//  }
+  
+//  // Capture image and temp/hum measurement
+//  if(initCamera() && initDHT()) {
+//    if(!captureImage()) {
+//      return false;
+//    }
+//    getDHTMeasurement(&temp, &hum);
+//  } else {
+//    return false;
+//  }
+
+//  if(useFlash) {
+//    // Disable flash
+//    digitalWrite(FLASHPIN, LOW);
+//  }
+
+//  return true;
+//}

@@ -3,9 +3,12 @@
 #include "soc/rtc_cntl_reg.h"
 #include "soc/rtc.h"
 
+// Include hardware config first to prevent conflicts
+#include "src/config_hardware.h"
+
 #include "src/DisplayManager/DisplayManager.h"
 #include "src/Measurements/Measurements.h"
-#include "src/WifiManager/WiFiManager.h"
+#include "src/WiFiManager/WiFiManager.h"
 #include "src/BTManager/BTManager.h"
 #include "config.h"
 
@@ -35,9 +38,10 @@ RTC_DATA_ATTR int32_t timeShiftHours = 0;         // Hour shift for measurements
 
 // Gloabal variables
 static unsigned long lastScheduledMeasurement = 0;
-float temperature, humidity;
 char* statusBluetooth = "Disabled";
 char* statusWiFi      = "Disabled";
+bool useFlash         = false;
+float temperature, humidity;
 
 void BTN_ME_ISR() {
   unsigned long currentTime = millis();
@@ -140,9 +144,9 @@ void setup() {
   pinMode(BTN_ME, INPUT_PULLUP);
   attachInterrupt(BTN_ME, BTN_ME_ISR, FALLING);
   pinMode(SW_DIS, INPUT_PULLUP);
-  attachInterrupt(SW_DIS, SW_DIS_ISR, FALLING);
+  attachInterrupt(SW_DIS, SW_DIS_ISR, CHANGE);
   pinMode(SW_BLT, INPUT_PULLUP);
-  attachInterrupt(SW_BLT, SW_BLT_ISR, FALLING);
+  attachInterrupt(SW_BLT, SW_BLT_ISR, CHANGE);
 
   // Create display data structure
   static DisplayData displayData = {
@@ -166,6 +170,7 @@ void setup() {
 }
 
 void loop() {
+  Serial.println("Hello");
   static unsigned long lastActivity = millis();
 
   // Handle sleep request when already awake
@@ -177,7 +182,7 @@ void loop() {
 
   // Check for scheduled measurements even when awake
   if(isTimeForScheduledMeasurement() && !flagTimer) {
-    Serial.println("Time for scheduled measurement while awake");
+    Serial.println("Time for scheduled capture while awake");
     flagTimer = true;
   }
 
@@ -187,11 +192,10 @@ void loop() {
     flagTimer = false;
 
     lastScheduledMeasurement = millis();
-    while(!getDHTMeasurement(&temperature, &humidity)) {
-      Serial.println("DHT Measurement failed");
+    while(/*!sendMeasurement(useFlash)*/ false) {
       delay(1000); // Wait 1s before retrying
     }
-    Serial.println("Scheduled DHT Measurement");
+    Serial.println("Scheduled Capture");
 
     if(!flagWakeUp) {
       delay(5000); // Delay before going back to sleep
@@ -205,11 +209,10 @@ void loop() {
   if(flagButton) {
     flagCurrentMeasure = true;
     flagButton = false;
-    while(!getDHTMeasurement(&temperature, &humidity)) {
-      Serial.println("DHT Measurement failed");
+    while(/*!sendMeasurement(useFlash)*/ false) {
       delay(1000); // Wait 1s before retrying
     }
-    Serial.println("Button DHT Measurement");
+    Serial.println("Button Capture");
     lastActivity = millis();
   }
 
@@ -236,8 +239,8 @@ void loop() {
 
     if(command == "measure") {
       flagCurrentMeasure = true; 
-      if(getDHTMeasurement(&temperature, &humidity)) {
-        Serial.println("BT: DHT Measurement success");
+      if(/*!sendMeasurement(useFlash)*/ true) {
+        Serial.println("BT: Capture success");
       }
     } else if(command.startsWith("wifi_ssid:")) {
       String ssid = command.substring(10);
